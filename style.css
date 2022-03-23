@@ -3,17 +3,20 @@ main, body, html{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: var(--color-light-grey);
+    background-color: var(--color-dark-grey);
+    color: var(--color-white);
 }
 :root{
     --color-white: white;
     --color-light-grey: #e6e6e6;
+    --color-black: black;
+    --color-dark-grey: #161616;
 }
 
 #sketch-grid{
     height: 500px;
     width: 500px;
-    background-color: var(--color-white);
+    background-color: var(--color-black);
 }
 
 .center{

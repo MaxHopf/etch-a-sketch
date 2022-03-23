@@ -7,7 +7,6 @@ const sketchGrid = document.querySelector('#sketch-grid');
 function createSquares(squareRoot) {
     for (let i = 0; i < squareRoot ** 2; i++) {
         const squareElement = document.createElement('div');
-        squareElement.setAttribute('style', 'background-color: red');
         hoverEvent(squareElement);
         sketchGrid.appendChild(squareElement);
     }
@@ -22,5 +21,8 @@ function hoverEvent(squareElement) {
         squareElement.setAttribute('style', 'background-color: white');
     });
 }
+
+createSquares(squareRoot);
+layoutSquaresToGrid(sketchGrid, squareRoot)
 
 
