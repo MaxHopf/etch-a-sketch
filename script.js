@@ -7,24 +7,24 @@ const clearBtn = document.querySelector('#clear');
 
 clearBtn.addEventListener('click', () => {
     clearGrid();
-    createSquares(squareRoot);
-    layoutSquaresToGrid(sketchGrid, squareRoot)
+    createSquareElements(squareRoot);
+    createGrid(sketchGrid, squareRoot)
 });
 
-function createSquares(squareRoot) {
+function createSquareElements(squareRoot) {
     for (let i = 0; i < squareRoot ** 2; i++) {
         const squareElement = document.createElement('div');
         squareElement.classList.add('element');
-        hoverEvent(squareElement);
+        changeElements(squareElement);
         sketchGrid.appendChild(squareElement);
     }
 }
 
-function layoutSquaresToGrid(sketchGrid, squareRoot) {
+function createGrid(sketchGrid, squareRoot) {
     sketchGrid.setAttribute('style', `display: grid; grid-template-columns: repeat(${squareRoot}, 1fr)`);
 }
 
-function hoverEvent(squareElement) {
+function changeElements(squareElement) {
     squareElement.addEventListener('mouseenter', () => {
         squareElement.setAttribute('style', 'background-color: white');
     });
@@ -38,7 +38,7 @@ function clearGrid() {
 
 
 
-createSquares(squareRoot);
-layoutSquaresToGrid(sketchGrid, squareRoot)
+createSquareElements(squareRoot);
+createGrid(sketchGrid, squareRoot)
 
 
