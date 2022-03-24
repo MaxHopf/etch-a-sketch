@@ -4,11 +4,24 @@ let squareRoot = 32;
 
 const sketchGrid = document.querySelector('#sketch-grid');
 const clearBtn = document.querySelector('#clear');
+const slider = document.getElementById("myRange");
+
+createSquareElements(squareRoot);
+createGrid(sketchGrid, squareRoot);
 
 clearBtn.addEventListener('click', () => {
     clearGrid();
     createSquareElements(squareRoot);
     createGrid(sketchGrid, squareRoot)
+});
+
+slider.addEventListener('change', () => {
+    console.log(slider.value);
+    squareRoot = slider.value;
+    clearGrid();
+    createSquareElements(squareRoot);
+    createGrid(sketchGrid, squareRoot);
+
 });
 
 function createSquareElements(squareRoot) {
@@ -34,11 +47,5 @@ function clearGrid() {
     const elements = document.querySelectorAll(".element");
     elements.forEach(element => element.remove());
 }
-
-
-
-
-createSquareElements(squareRoot);
-createGrid(sketchGrid, squareRoot)
 
 
