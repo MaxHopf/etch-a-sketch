@@ -50,9 +50,18 @@ function getPixels() {
 }
 
 function draw(pixels) {
+    let isDrawing = false;
     pixels.forEach((pixel) => {
-        pixel.addEventListener('mouseenter', () => {
-            pixel.setAttribute('style', `background-color: ${penColor}`);
+        document.body.addEventListener('mousedown', () => {
+            isDrawing = true;
+        });
+        document.body.addEventListener('mouseup', () => {
+            isDrawing = false;
+        });
+        pixel.addEventListener('mousemove', () => {
+            if (isDrawing == true) {
+                pixel.setAttribute('style', `background-color: ${penColor}`);
+            }
         });
     });
 }
