@@ -1,51 +1,67 @@
 "use strict"
 
 let squareRoot = 32;
+let penColor = '#ffffff';
 
-const sketchGrid = document.querySelector('#sketch-grid');
+const sketchArea = document.querySelector('#sketch-grid');
 const clearBtn = document.querySelector('#clear');
-const slider = document.getElementById("myRange");
+const slider = document.querySelector('#myRange');
+const colorSelector = document.querySelector('#colorselector');
 
-createSquareElements(squareRoot);
-createGrid(sketchGrid, squareRoot);
+generatePixels(squareRoot);
+createGrid(sketchArea, squareRoot);
+draw(getPixels());
 
 clearBtn.addEventListener('click', () => {
-    clearGrid();
-    createSquareElements(squareRoot);
-    createGrid(sketchGrid, squareRoot)
+    clear(getPixels());
+    generatePixels(squareRoot);
+    createGrid(sketchArea, squareRoot);
+    draw(getPixels());
 });
 
 slider.addEventListener('change', () => {
-    console.log(slider.value);
     squareRoot = slider.value;
-    clearGrid();
-    createSquareElements(squareRoot);
-    createGrid(sketchGrid, squareRoot);
-
+    clear(getPixels());
+    generatePixels(squareRoot);
+    createGrid(sketchArea, squareRoot);
+    draw(getPixels());
 });
 
-function createSquareElements(squareRoot) {
+colorSelector.addEventListener('change', () => {
+    penColor = colorSelector.value;
+    createGrid(sketchArea, squareRoot);
+});
+
+function generatePixels(squareRoot) {
     for (let i = 0; i < squareRoot ** 2; i++) {
-        const squareElement = document.createElement('div');
-        squareElement.classList.add('element');
-        changeElements(squareElement);
-        sketchGrid.appendChild(squareElement);
+        const pixel = document.createElement('div');
+        pixel.classList.add('element');
+        sketchArea.appendChild(pixel);
     }
 }
 
-function createGrid(sketchGrid, squareRoot) {
-    sketchGrid.setAttribute('style', `display: grid; grid-template-columns: repeat(${squareRoot}, 1fr)`);
+function createGrid(sketchArea, squareRoot) {
+    sketchArea.setAttribute('style', `display: grid; grid-template-columns: repeat(${squareRoot}, 1fr)`);
 }
 
-function changeElements(squareElement) {
-    squareElement.addEventListener('mouseenter', () => {
-        squareElement.setAttribute('style', 'background-color: white');
+function getPixels() {
+    let pixels = document.querySelectorAll('.element');
+    return pixels;
+}
+
+function draw(pixels) {
+    pixels.forEach((pixel) => {
+        pixel.addEventListener('mouseenter', () => {
+            pixel.setAttribute('style', `background-color: ${penColor}`);
+        });
     });
 }
 
-function clearGrid() {
-    const elements = document.querySelectorAll(".element");
-    elements.forEach(element => element.remove());
+function clear(pixels) {
+    pixels.forEach(element => element.remove());
 }
+
+
+
 
 
